@@ -1,0 +1,55 @@
+name: Query Amazon Athena
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    name: Example Queries
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: 'Simple Query'
+        uses: ./
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        with:
+          sql-input: 'SELECT 1+1'
+          output-location: 's3://athena-query-action/results/'
+          wait: 'false'
+
+      - name: 'Create Database with State Management'
+        uses: ./
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        with:
+          sql-input: 'CREATE DATABASE athena_query_action'
+          output-location: 's3://athena-query-action/results/'
+          ddb-id: 'Create Sample Database'
+          ddb-table: 'athena-query-action'
+          wait: 'true'
+
+      - name: 'Run Query from File with State Management'
+        uses: ./
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        with:
+          database: 'athena-query-action'
+          sql-file: 'examples/select.sql'
+          output-location: 's3://athena-query-action/results/'
+          ddb-id: 'Run Sample Query'
+          ddb-table: 'athena-query-action'
+          wait: 'true'

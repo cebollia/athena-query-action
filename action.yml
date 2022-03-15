@@ -1,0 +1,34 @@
+name: 'Athena Query'
+description: 'Run an athena query during build.'
+inputs:
+  sql-input:
+    description: 'Raw SQL Input'
+    required: false
+  sql-file:
+    description: 'SQL File Input'
+    required: false
+  output-location:
+    description: 'Location on S3 to store query results'
+    required: false
+  workgroup:
+    description: 'Workgroup to execute the query'
+    required: false
+  database:
+    description: 'Database to run against, if any'
+    required: false
+  ddb-id:
+    description: 'Unique ID for entry into DynamoDB table' 
+    required: false
+  ddb-table:
+    description: 'DynamoDB Table for state tracking'
+    required: false
+  wait:
+    description: 'Wait for the query to finish'
+    required: false
+    default: "false"
+outputs:
+  query-id:
+    description: 'Athena Query ID'
+runs:
+  using: 'node16'
+  main: 'index.js'
