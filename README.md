@@ -8,17 +8,20 @@ state with DynamoDB.
 ## `sql-input`
 
 **conditionally required** 
+
 Raw SQL query. If not set, `sql-file` must be.
 
 ## `sql-file`
 
-**conditionally required** 
+**conditionally required**
+
 Path to SQL file with single SQL query. If not set, 
 `sql-input` must be.
 
 ## `output-location`
 
 **conditionally required** 
+
 S3 path to store query results. If not set `workgroup` below must
 be set, and configured with an output path. This can also be used in conjunction with
 `workgroup` to override the default output.
@@ -26,23 +29,27 @@ be set, and configured with an output path. This can also be used in conjunction
 ## `workgroup`
 
 **conditionally required** 
+
 Workgroup to use to execute the query. If not set, `output-location`
 above must be set.
 
 ## `database`
 
 **optional** 
+
 Database to run query against.
 
 ## `ddb-id`
 
 **conditionally required** 
+
 Unique ID for SQL statement for tracking, must be 
 set if using `ddb-table` tracking below.
 
 ## `ddb-table`
 
 **optional** 
+
 DynamoDB table name to track state.
 
 _If this is set, then the query will only be executed when the query
@@ -54,6 +61,7 @@ executed with each run.
 ## `wait`
 
 **optional** 
+
 Wait for the query to finish before continuing. This would allow
 you to utilize the query results in a successive build step. Must be set to
 either `true` or `false`. _If this is set to true, if the query execute state 
@@ -77,7 +85,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
 with:
-  sql-input: 'CREATE DATABASE mydatabase;'
+  sql-input: 'CREATE DATABASE mydatabase'
   ddb-id: 'create-mydatabase'
   ddb-table: 'github-athena-query-tracking'
   wait: 'false'
