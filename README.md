@@ -79,7 +79,7 @@ The ID of the query execution, such as `d48bedd2-ddbc-4858-a623-dad454866b5c`.
 ### Execute an SQL statement on change only.
 
 ```yaml
-uses: actions/athena-query-action@v1.0
+uses: actions/athena-query@v1.0
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -94,7 +94,7 @@ with:
 ### Execute a query on every run.
 
 ```yaml
-uses: actions/athena-query-action@v1.0
+uses: actions/athena-query@v1.0
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -106,7 +106,7 @@ with:
 ### Execute an SQL file on change only.
 
 ```yaml
-uses: actions/athena-query-action@v1.0
+uses: actions/athena-query@v1.0
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
