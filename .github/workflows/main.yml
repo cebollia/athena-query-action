@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Simple Query'
-        uses: actions/athena-query@v1.0
+        uses: cebollia/athena-query-action@v1.0
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -28,7 +28,7 @@ jobs:
           wait: 'false'
 
       - name: 'Create Database with State Management'
-        uses: actions/athena-query@v1.0
+        uses: cebollia/athena-query-action@v1.0
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -41,7 +41,7 @@ jobs:
           wait: 'true'
 
       - name: 'Run Query from File with State Management'
-        uses: actions/athena-query@v1.0
+        uses: cebollia/athena-query-action@v1.0
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
