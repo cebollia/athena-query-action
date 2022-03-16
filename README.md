@@ -64,9 +64,9 @@ executed with each run.
 
 Wait for the query to finish before continuing. This would allow
 you to utilize the query results in a successive build step. Must be set to
-either `true` or `false`. _If this is set to true, if the query execute state 
-is *FAILED* or *CANCELLED* then the script will exit with an error. If using 
-DynamoDB to hold state, it will not be updated.
+either `true` or `false`. _If this is set to true, and the query execute state 
+is *FAILED* or *CANCELLED*, then the script will exit with an error._ If using 
+DynamoDB to hold state, it will not be updated on failure.
 
 ## Outputs
 
